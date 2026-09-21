@@ -6123,7 +6123,7 @@ composite {
 			}
 			command[0] {
 				label="dmagic"
-				name="bash /home/beams/2BMB/bin/dmagic.sh &"
+				name="bash /home/beams/FACTUSER/bin/dmagic.sh &"
 			}
 			clr=14
 			bclr=32
