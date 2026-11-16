@@ -13,3 +13,9 @@ set_viktor
 # Hand-made backup copies of MEDM screens.  Git history is the backup, and a
 # tracked copy only diverges from the screen it was taken from.
 *_BAK.adl
+
+# Vim swap files.  One was sitting in the working tree while its script was
+# still open in an editor.
+*.swp
+*.swo
+*~
