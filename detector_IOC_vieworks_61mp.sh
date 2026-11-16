@@ -3,11 +3,11 @@
 # Define variables
 TAB_NAME="19-BM Detector IOC"
 REMOTE_USER="factuser"
-REMOTE_HOST="orco"
+REMOTE_HOST="factdetector"
 WORK_DIR="/net/s19dserv/xorApps/epics/synApps_6_3/ioc/19bmVieworks/iocBoot/ioc19bmVieworks/softioc/"
 EGRABBER="/opt/euresys/egrabber/shell/setup_gentl_paths.sh"
 
-# Open a new tab in gnome-terminal, SSH into orco, restart the Vieworks IOC.
+# Open a new tab in gnome-terminal, SSH into factdetector, restart the Vieworks IOC.
 #
 # The eGrabber environment must be sourced first.  softioc/run does this, but
 # 19bmVieworks.pl sets IOC_CMD to the IOC binary directly and so bypasses it;
@@ -25,9 +25,10 @@ BODY="
         ./19bmVieworks.pl run
 "
 
-# Run locally when this script is already on the target host.  orco's own
-# hostname resolves to 10.54.113.19 while its only interface is 10.54.129.13,
-# so "ssh orco" from orco fails with "connect ... Invalid argument".
+# Run locally when this script is already on the target host.  factdetector's
+# own hostname resolves to a link-local IPv6 address rather than to its
+# 10.54.129.15 interface, so "ssh factdetector" from factdetector fails the
+# same way "ssh orco" from orco used to.  The guard avoids the ssh entirely.
 if [ "$(hostname -s)" = "$REMOTE_HOST" ]; then
     CMD="$BODY"
 else
@@ -35,7 +36,7 @@ else
 fi
 
 # gnome-terminal is a D-Bus client: it asks the session bus to activate
-# gnome-terminal-server.  On a host with no graphical session -- orco, today --
+# gnome-terminal-server.  On a host with no graphical session -- factdetector, today --
 # that fails with "Could not activate remote peer" and nothing opens.
 #
 # It cannot be detected by exit status: gnome-terminal returns 0 even when the

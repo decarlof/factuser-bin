@@ -3,17 +3,18 @@
 # Define variables
 TAB_NAME="tomoScan IOC"
 REMOTE_USER="factuser"
-REMOTE_HOST="orco"
+REMOTE_HOST="factdetector"
 APP_NAME="tomoScanApp"
 
-# Open a new tab in gnome-terminal, SSH into orco, and stop the tomoScan IOC
+# Open a new tab in gnome-terminal, SSH into factdetector, and stop the tomoScan IOC
 BODY="
         kill_IOC.sh ${APP_NAME}
 "
 
-# Run locally when this script is already on the target host.  orco's own
-# hostname resolves to 10.54.113.19 while its only interface is 10.54.129.13,
-# so "ssh orco" from orco fails with "connect ... Invalid argument".
+# Run locally when this script is already on the target host.  factdetector's
+# own hostname resolves to a link-local IPv6 address rather than to its
+# 10.54.129.15 interface, so "ssh factdetector" from factdetector fails the
+# same way "ssh orco" from orco used to.  The guard avoids the ssh entirely.
 if [ "$(hostname -s)" = "$REMOTE_HOST" ]; then
     CMD="$BODY"
 else
@@ -21,7 +22,7 @@ else
 fi
 
 # gnome-terminal is a D-Bus client: it asks the session bus to activate
-# gnome-terminal-server.  On a host with no graphical session -- orco, today --
+# gnome-terminal-server.  On a host with no graphical session -- factdetector, today --
 # that fails with "Could not activate remote peer" and nothing opens.
 #
 # It cannot be detected by exit status: gnome-terminal returns 0 even when the

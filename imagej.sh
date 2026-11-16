@@ -8,10 +8,10 @@
 #
 # WHERE YOU RUN THIS DECIDES WHERE THE IMAGES TRAVEL.  One full Vieworks frame
 # is 9568 x 6380 x 2 = 122,087,680 bytes.  Normal use is from radon, the user
-# console, which means frames cross the network from orco -- that is the
-# intended arrangement and it works.  Running it on orco instead keeps the
-# stream on the loopback interface, which is worth knowing if bandwidth ever
-# becomes the limit.
+# console, which means frames cross the network from factdetector -- that is
+# the intended arrangement and it works.  Running it on factdetector instead
+# keeps the stream on the loopback interface, which is worth knowing if
+# bandwidth ever becomes the limit.
 #
 # The installation came from 2-BM (Software/ImageJ_2bm, rsync'd 2026-09-19) and
 # carries EPICS_AD_Viewer (Channel Access) and EPICS_NTNDA_Viewer (pvAccess),
@@ -22,8 +22,10 @@
 # USE THE NTNDA VIEWER.  A full frame will not fit through Channel Access here.
 #     Plugins -> EPICS areaDetector -> EPICS NTNDA Viewer
 #     channel:  19bmVieworks:Pva1:Image
-# Verified 2026-09-19: that channel is an epics:nt/NTNDArray:1.0 served from
-# 10.54.129.13:5075 and resolves from both orco and the public network.
+# Verified 2026-11-16: that channel is an epics:nt/NTNDArray:1.0 served from
+# factdetector (10.54.129.15) and resolves from the public network.  The
+# camera IOC moved there from orco with the Coaxlink cards; pvget against
+# 10.54.129.13 now times out, which is what broke this before the change.
 
 IJ_HOME=/home/beams/FACTUSER/Software/ImageJ
 LOG=/tmp/imagej-$(id -un).log
@@ -38,8 +40,8 @@ pgrep -f 'ij\.ImageJ' >/dev/null && { echo "ImageJ is already running on $(hostn
 # environment of whatever started MEDM, which may never have read .bashrc --
 # which is exactly how 2-BM's equivalent button gets its settings, and why it
 # would break the moment MEDM were started from a bare environment.
-: "${EPICS_CA_ADDR_LIST:=164.54.129.12 10.54.129.12 10.54.129.13 10.54.129.24:16661}"
-: "${EPICS_PVA_ADDR_LIST:=10.54.129.13}"
+: "${EPICS_CA_ADDR_LIST:=164.54.129.12 10.54.129.12 10.54.129.15 10.54.129.20:16661}"
+: "${EPICS_PVA_ADDR_LIST:=10.54.129.15}"
 
 # The CA viewer needs a ceiling above one frame.  Raising it here does not by
 # itself make Channel Access work at full resolution -- the IOC has its own
