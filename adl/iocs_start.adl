@@ -267,7 +267,7 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="2bmHXP:HexapodAllEnabled.VAL"
+		chan="19bmHXP:HexapodAllEnabled.VAL"
 	}
 }
 rectangle {
