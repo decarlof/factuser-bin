@@ -6,6 +6,90 @@
 # mctoptics or energy screens, no second detector, and ADEuresys in place of
 # ADSpinnaker.
 
+# ---------------------------------------------------------------------------
+# Optional argument: which camera a scan should use.
+#
+#   start_tomo            open the screen on whatever tomoscan is set to
+#   start_tomo orca       switch tomoscan to the ORCA, then open
+#   start_tomo vieworks   switch tomoscan to the Vieworks, then open
+#
+# The argument changes the REAL selection, not just this screen.  A flag that
+# only set the MEDM macro would let the panel show one camera while the scan
+# drove the other -- and nothing on screen would contradict it.  So switching
+# writes CameraPVPrefix and FilePluginPVPrefix and restarts the python server,
+# because the server reads those prefixes once, in __init__.
+# ---------------------------------------------------------------------------
+CAGET=$(command -v caget || echo /APSshare/epics/base-7.0.8/bin/rhel9-x86_64/caget)
+CAPUT=$(command -v caput || echo /APSshare/epics/base-7.0.8/bin/rhel9-x86_64/caput)
+TS=19bm:TomoScan:
+
+want_prefix=""
+case "${1:-}" in
+    "")                      ;;
+    orca|ORCA)               want_prefix="ORCA:" ;;
+    vieworks|Vieworks|vw)    want_prefix="19bmVieworks:" ;;
+    -h|--help)
+        cat <<'USAGE'
+Usage: start_tomo [orca|vieworks]
+
+  (no argument)  open the screen on whatever camera tomoscan is set to
+  orca           switch tomoscan to the ORCA, then open
+  vieworks       switch tomoscan to the Vieworks VP-61MX, then open
+
+An argument changes the real selection: it writes CameraPVPrefix and
+FilePluginPVPrefix and restarts the tomoscan python server, which reads
+those prefixes only at startup.  It refuses while a scan is running, and
+refuses if the target camera's IOC is not answering.
+USAGE
+        exit 0 ;;
+    *)  echo "start_tomo: unknown camera '$1' (use orca or vieworks)" >&2
+        exit 2 ;;
+esac
+
+if [ -n "$want_prefix" ]; then
+    current=$("$CAGET" -t "${TS}CameraPVPrefix" 2>/dev/null | tr -d '[:space:]')
+    if [ "$current" = "$want_prefix" ]; then
+        echo "start_tomo: tomoscan already uses $want_prefix - no restart needed"
+    else
+        # Refuse while a scan is in progress; swapping the camera mid-scan
+        # would abandon the run with its files half written.
+        status=$("$CAGET" -t "${TS}ScanStatus" 2>/dev/null)
+        case "$status" in
+            *"Scan complete"*|*"Aborted"*|"") ;;
+            *)  echo "start_tomo: ScanStatus is '$status' - refusing to switch" >&2
+                echo "            cameras while a scan is running." >&2
+                exit 1 ;;
+        esac
+        # The target camera's IOC must be up, or tomoscan points at nothing.
+        if ! timeout 5 "$CAGET" -t "${want_prefix}cam1:Acquire" >/dev/null 2>&1; then
+            echo "start_tomo: ${want_prefix}cam1: is not answering - start that" >&2
+            echo "            camera's IOC first." >&2
+            exit 1
+        fi
+        echo "start_tomo: switching tomoscan from ${current:-<unset>} to $want_prefix"
+        printf '            this restarts the python server. Continue? [y/N] '
+        read -r reply
+        case "$reply" in
+            y|Y|yes|YES) ;;
+            *) echo "            aborted."; exit 1 ;;
+        esac
+        "$CAPUT" "${TS}CameraPVPrefix"     "$want_prefix"        >/dev/null
+        "$CAPUT" "${TS}FilePluginPVPrefix" "${want_prefix}HDF1:" >/dev/null
+        bash /home/beams/FACTUSER/bin/tomoscan_server_stop.sh >/dev/null 2>&1
+        sleep 3
+        bash /home/beams/FACTUSER/bin/tomoscan_server.sh      >/dev/null 2>&1 &
+        printf '            waiting for the server'
+        for _ in $(seq 1 20); do
+            sleep 2; printf '.'
+            [ "$("$CAGET" -t "${TS}ServerRunning" 2>/dev/null)" = "Running" ] && break
+        done
+        echo
+        if [ "$("$CAGET" -t "${TS}ServerRunning" 2>/dev/null)" != "Running" ]; then
+            echo "start_tomo: server did not come back - check its terminal." >&2
+        fi
+    fi
+fi
+
 ADL=/home/beams/FACTUSER/bin/adl
 TOMOSCAN=/home/beams/FACTUSER/epics/synApps/support/tomoscan
 AREA_DETECTOR=/APSshare/epics/synApps_6_3/support/areaDetector-R3-14
@@ -46,11 +130,32 @@ TSS=19bm:
 TSS_R=TomoScanStream:
 
 # --- detector ---------------------------------------------------------------
-AD0=19bmVieworks:
+# Which camera a scan actually uses is a runtime PV in the tomoscan IOC, not a
+# property of this screen: the python server reads CameraPVPrefix in __init__
+# and drives whatever it names.  Read it here so the Camera panel always shows
+# the camera tomoscan will really use -- otherwise the panel and the scan can
+# disagree silently, which looks exactly like working correctly.
+#
+# Changing cameras therefore means caput'ing CameraPVPrefix and
+# FilePluginPVPrefix and RESTARTING THE PYTHON SERVER, then reopening this
+# screen.  The Detector button offers both cameras regardless of the selection.
+#
+# Note the ORCA serves no Proc1 plugin, so the flat-field widgets that use
+# $(AD0_PROC1) stay blank when it is selected.  That is expected, not a fault.
+CAGET=$(command -v caget || echo /APSshare/epics/base-7.0.8/bin/rhel9-x86_64/caget)
+AD0=$("$CAGET" -t 19bm:TomoScan:CameraPVPrefix 2>/dev/null | tr -d '[:space:]')
+case "$AD0" in
+    ORCA:)         AD0_MODEL=ORCA_C16240 ;;
+    19bmVieworks:) AD0_MODEL=ViewWorks_VP61MX ;;
+    *)  echo "start_tomo: cannot read 19bm:TomoScan:CameraPVPrefix" \
+             "(tomoScan IOC down?) - defaulting to the Vieworks" >&2
+        AD0=19bmVieworks:
+        AD0_MODEL=ViewWorks_VP61MX ;;
+esac
+echo "start_tomo: camera panel bound to $AD0"
 AD0_CAM=cam1:
 AD0_PROC1=Proc1:
 AD0_HDF=HDF1:
-AD0_MODEL=ViewWorks_VP61MX
 
 # --- motors -----------------------------------------------------------------
 # The screen drives seven axes through three prefixes.  At 2-BM they are:

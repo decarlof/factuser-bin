@@ -4989,9 +4989,14 @@ text {
 		height=25
 	}
 	display[0] {
+		label="ORCA C16240"
+		name="19bm_ORCA.adl"
+		args="P=ORCA:, R=cam1:"
+	}
+	display[1] {
 		label="Vieworks VP-61MX"
 		name="ADEuresys.adl"
-		args="P=$(AD0), R=$(AD0_CAM), C=$(AD0_MODEL)"
+		args="P=19bmVieworks:, R=cam1:, C=ViewWorks_VP61MX"
 	}
 	clr=14
 	bclr=31
@@ -9026,6 +9031,50 @@ text {
 		chan="$(P1)$(M35).RBV"
 		clr=54
 		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=988
+		y=922
+		width=120
+		height=25
+	}
+	display[0] {
+		label="Filters"
+		name="19bm_filters.adl"
+		args="P=$(P1)"
+	}
+	clr=14
+	bclr=31
+	label="-Filters"
+}
+text {
+	object {
+		x=236
+		y=309
+		width=130
+		height=12
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Scan uses"
+}
+"text update" {
+	object {
+		x=236
+		y=321
+		width=130
+		height=13
+	}
+	monitor {
+		chan="19bm:TomoScan:CameraPVPrefix"
+		clr=54
+		bclr=3
 	}
 	format="string"
 	limits {
