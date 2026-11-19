@@ -47,13 +47,16 @@ USAGE
 esac
 
 if [ -n "$want_prefix" ]; then
-    current=$("$CAGET" -t "${TS}CameraPVPrefix" 2>/dev/null | tr -d '[:space:]')
+    current=$("$CAGET" -t -S "${TS}CameraPVPrefix" 2>/dev/null | tr -d '[:space:]')
     if [ "$current" = "$want_prefix" ]; then
         echo "start_tomo: tomoscan already uses $want_prefix - no restart needed"
     else
         # Refuse while a scan is in progress; swapping the camera mid-scan
         # would abandon the run with its files half written.
-        status=$("$CAGET" -t "${TS}ScanStatus" 2>/dev/null)
+        # -S is required: ScanStatus is a DBF_CHAR waveform, and plain
+        # caget -t returns "256 83 99 ..." instead of "Scan complete",
+        # so without it this guard refused every time.
+        status=$("$CAGET" -t -S "${TS}ScanStatus" 2>/dev/null)
         case "$status" in
             *"Scan complete"*|*"Aborted"*|"") ;;
             *)  echo "start_tomo: ScanStatus is '$status' - refusing to switch" >&2
@@ -143,7 +146,7 @@ TSS_R=TomoScanStream:
 # Note the ORCA serves no Proc1 plugin, so the flat-field widgets that use
 # $(AD0_PROC1) stay blank when it is selected.  That is expected, not a fault.
 CAGET=$(command -v caget || echo /APSshare/epics/base-7.0.8/bin/rhel9-x86_64/caget)
-AD0=$("$CAGET" -t 19bm:TomoScan:CameraPVPrefix 2>/dev/null | tr -d '[:space:]')
+AD0=$("$CAGET" -t -S 19bm:TomoScan:CameraPVPrefix 2>/dev/null | tr -d '[:space:]')
 case "$AD0" in
     ORCA:)         AD0_MODEL=ORCA_C16240 ;;
     19bmVieworks:) AD0_MODEL=ViewWorks_VP61MX ;;
