@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=-206
-		y=136
+		x=0
+		y=128
 		width=1370
 		height=950
 	}
@@ -6897,20 +6897,20 @@ composite {
 }
 text {
 	object {
-		x=454
-		y=235
+		x=1185
+		y=444
 		width=130
 		height=12
 	}
 	"basic attribute" {
 		clr=20
 	}
-	textix="Scan uses"
+	textix="TomoScan uses"
 }
 "text update" {
 	object {
-		x=454
-		y=247
+		x=1185
+		y=456
 		width=130
 		height=13
 	}
@@ -7747,216 +7747,205 @@ composite {
 }
 composite {
 	object {
+		x=1199
+		y=605
+		width=83
+		height=29
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=1202
+				y=605
+				width=80
+				height=26
+			}
+			"basic attribute" {
+				clr=54
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="19bmSoft:alldoneBlink.VAL"
+			}
+			textix="Moving"
+		}
+		text {
+			object {
+				x=1199
+				y=608
+				width=80
+				height=26
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="19bmSoft:alldone.VAL"
+			}
+			textix="Moving"
+		}
+	}
+}
+"message button" {
+	object {
+		x=1168
+		y=545
+		width=150
+		height=50
+	}
+	control {
+		chan="19bmSoft:allstop.VAL"
+		clr=30
+		bclr=20
+	}
+	label="All Stop"
+	press_msg="1"
+}
+rectangle {
+	object {
 		x=1156
 		y=241
 		width=180
 		height=400
 	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=1194
-				y=586
-				width=83
-				height=29
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=1197
-						y=586
-						width=80
-						height=26
-					}
-					"basic attribute" {
-						clr=54
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="19bmSoft:alldoneBlink.VAL"
-					}
-					textix="Moving"
-				}
-				text {
-					object {
-						x=1194
-						y=589
-						width=80
-						height=26
-					}
-					"basic attribute" {
-						clr=20
-					}
-					"dynamic attribute" {
-						vis="if zero"
-						chan="19bmSoft:alldone.VAL"
-					}
-					textix="Moving"
-				}
-			}
-		}
-		"message button" {
-			object {
-				x=1166
-				y=526
-				width=150
-				height=50
-			}
-			control {
-				chan="19bmSoft:allstop.VAL"
-				clr=30
-				bclr=20
-			}
-			label="All Stop"
-			press_msg="1"
-		}
-		rectangle {
-			object {
-				x=1156
-				y=241
-				width=180
-				height=400
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-				width=5
-			}
-		}
-		text {
-			object {
-				x=1176
-				y=251
-				width=140
-				height=18
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Beamline Controls"
-			align="horiz. centered"
-		}
-		"related display" {
-			object {
-				x=1183
-				y=316
-				width=120
-				height=25
-			}
-			display[0] {
-				label="Slit motors"
-				name="SlitMotors.adl"
-				args="P1=$(P1), M20=$(M20), M21=$(M21), M22=$(M22), M23=$(M23)"
-			}
-			clr=14
-			bclr=31
-			label="-Slit motors"
-		}
-		"related display" {
-			object {
-				x=1180
-				y=351
-				width=120
-				height=25
-			}
-			display[0] {
-				label="Filters"
-				name="19bm_filters.adl"
-				args="P=$(P1)"
-			}
-			clr=14
-			bclr=31
-			label="-Filters"
-		}
-		"related display" {
-			object {
-				x=1183
-				y=385
-				width=120
-				height=25
-			}
-			display[0] {
-				label="Hexapod motors"
-				name="HexapodMotors.adl"
-				args="P3=$(P3)"
-			}
-			clr=14
-			bclr=31
-			label="-Hexapod motors"
-		}
-		"related display" {
-			object {
-				x=1183
-				y=419
-				width=120
-				height=25
-			}
-			display[0] {
-				label="TomoScan"
-				name="tomoScan.adl"
-				args="P=$(TS), R=$(TS_R), BEAMLINE=$(TS_BEAMLINE)"
-			}
-			clr=14
-			bclr=31
-			label="-TomoScan"
-		}
-		"shell command" {
-			object {
-				x=1180
-				y=453
-				width=120
-				height=25
-			}
-			command[0] {
-				label="IOCs"
-				name="medm -x /home/beams/FACTUSER/bin/adl/iocs_start.adl &"
-			}
-			clr=0
-			bclr=49
-			label="-IOCs"
-		}
-		"shell command" {
-			object {
-				x=1180
-				y=487
-				width=120
-				height=25
-			}
-			command[0] {
-				label="Camera 1"
-				name="firefox http://10.54.129.31 &"
-			}
-			command[1] {
-				label="Camera 2"
-				name="firefox http://10.54.129.32 &"
-			}
-			command[2] {
-				label="Camera 3"
-				name="firefox http://10.54.129.33 &"
-			}
-			clr=0
-			bclr=49
-			label="-    WebCam"
-		}
-		"related display" {
-			object {
-				x=1183
-				y=281
-				width=120
-				height=25
-			}
-			display[0] {
-				label="White Beam Slits"
-				name="WhiteBeamSlits.adl"
-				args="P1=$(P1)"
-			}
-			clr=14
-			bclr=51
-			label="WB Slits"
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=5
 	}
+}
+text {
+	object {
+		x=1176
+		y=251
+		width=140
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Beamline Controls"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=1185
+		y=316
+		width=120
+		height=25
+	}
+	display[0] {
+		label="Slit motors"
+		name="SlitMotors.adl"
+		args="P1=$(P1), M20=$(M20), M21=$(M21), M22=$(M22), M23=$(M23)"
+	}
+	clr=14
+	bclr=31
+	label="-Slit motors"
+}
+"related display" {
+	object {
+		x=1185
+		y=351
+		width=120
+		height=25
+	}
+	display[0] {
+		label="Filters"
+		name="19bm_filters.adl"
+		args="P=$(P1)"
+	}
+	clr=14
+	bclr=31
+	label="-Filters"
+}
+"related display" {
+	object {
+		x=1185
+		y=385
+		width=120
+		height=25
+	}
+	display[0] {
+		label="Hexapod motors"
+		name="HexapodMotors.adl"
+		args="P3=$(P3)"
+	}
+	clr=14
+	bclr=31
+	label="-Hexapod motors"
+}
+"related display" {
+	object {
+		x=1185
+		y=419
+		width=120
+		height=25
+	}
+	display[0] {
+		label="TomoScan"
+		name="tomoScan.adl"
+		args="P=$(TS), R=$(TS_R), BEAMLINE=$(TS_BEAMLINE)"
+	}
+	clr=14
+	bclr=31
+	label="-TomoScan"
+}
+"shell command" {
+	object {
+		x=1185
+		y=472
+		width=120
+		height=25
+	}
+	command[0] {
+		label="IOCs"
+		name="medm -x /home/beams/FACTUSER/bin/adl/iocs_start.adl &"
+	}
+	clr=0
+	bclr=49
+	label="-IOCs"
+}
+"shell command" {
+	object {
+		x=1185
+		y=506
+		width=120
+		height=25
+	}
+	command[0] {
+		label="Camera 1"
+		name="firefox http://10.54.129.31 &"
+	}
+	command[1] {
+		label="Camera 2"
+		name="firefox http://10.54.129.32 &"
+	}
+	command[2] {
+		label="Camera 3"
+		name="firefox http://10.54.129.33 &"
+	}
+	clr=0
+	bclr=49
+	label="-    WebCam"
+}
+"related display" {
+	object {
+		x=1185
+		y=281
+		width=120
+		height=25
+	}
+	display[0] {
+		label="White Beam Slits"
+		name="WhiteBeamSlits.adl"
+		args="P1=$(P1)"
+	}
+	clr=14
+	bclr=51
+	label="WB Slits"
 }
 composite {
 	object {
