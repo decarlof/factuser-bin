@@ -1,12 +1,12 @@
 
 file {
-	name="/home/beams0/FACTUSER/bin/adl/mct_main.adl"
+	name="/home/beams/FACTUSER/bin/adl/mct_main.adl"
 	version=030111
 }
 display {
 	object {
-		x=784
-		y=53
+		x=-206
+		y=136
 		width=1370
 		height=950
 	}
@@ -85,176 +85,6 @@ display {
 		3cb420,
 		289315,
 		1a7309,
-	}
-}
-"shell command" {
-	object {
-		x=2
-		y=131
-		width=120
-		height=25
-	}
-	command[0] {
-		label="IOCs"
-		name="medm -x /home/beams/FACTUSER/bin/adl/iocs_start.adl &"
-	}
-	clr=0
-	bclr=49
-	label="-IOCs"
-}
-"related display" {
-	object {
-		x=332
-		y=235
-		width=120
-		height=25
-	}
-	display[0] {
-		label="TomoScan"
-		name="tomoScan.adl"
-		args="P=$(TS), R=$(TS_R), BEAMLINE=$(TS_BEAMLINE)"
-	}
-	clr=14
-	bclr=31
-	label="-TomoScan"
-}
-"shell command" {
-	object {
-		x=132
-		y=98
-		width=120
-		height=25
-	}
-	command[0] {
-		label="Camera 1"
-		name="firefox http://10.54.129.31 &"
-	}
-	command[1] {
-		label="Camera 2"
-		name="firefox http://10.54.129.32 &"
-	}
-	command[2] {
-		label="Camera 3"
-		name="firefox http://10.54.129.33 &"
-	}
-	clr=0
-	bclr=49
-	label="-    WebCam"
-}
-text {
-	object {
-		x=15
-		y=-3
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=28
-	}
-	textix="Shutter A"
-	align="horiz. centered"
-}
-"message button" {
-	object {
-		x=27
-		y=20
-		width=75
-		height=35
-	}
-	control {
-		chan="S19BM-PSS:FES:OpenEPICSC"
-		clr=14
-		bclr=51
-	}
-	label="Open"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=27
-		y=55
-		width=75
-		height=35
-	}
-	control {
-		chan="S19BM-PSS:FES:CloseEPICSC"
-		clr=14
-		bclr=51
-	}
-	label="Close"
-	press_msg="1"
-}
-oval {
-	object {
-		x=107
-		y=30
-		width=20
-		height=19
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="S19BM-PSS:FES:BeamBlockingM"
-	}
-}
-oval {
-	object {
-		x=107
-		y=62
-		width=20
-		height=19
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="S19BM-PSS:FES:BeamBlockingM"
-	}
-}
-composite {
-	object {
-		x=27
-		y=92
-		width=83
-		height=29
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=30
-				y=92
-				width=80
-				height=26
-			}
-			"basic attribute" {
-				clr=54
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="19bmSoft:alldoneBlink.VAL"
-			}
-			textix="Moving"
-		}
-		text {
-			object {
-				x=27
-				y=95
-				width=80
-				height=26
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="19bmSoft:alldone.VAL"
-			}
-			textix="Moving"
-		}
 	}
 }
 rectangle {
@@ -1469,21 +1299,6 @@ composite {
 			label="-Debug"
 		}
 	}
-}
-"message button" {
-	object {
-		x=141
-		y=32
-		width=150
-		height=50
-	}
-	control {
-		chan="19bmSoft:allstop.VAL"
-		clr=30
-		bclr=20
-	}
-	label="All Stop"
-	press_msg="1"
 }
 text {
 	object {
@@ -3115,7 +2930,7 @@ composite {
 }
 composite {
 	object {
-		x=1
+		x=2
 		y=163
 		width=210
 		height=80
@@ -3124,7 +2939,7 @@ composite {
 	children {
 		polyline {
 			object {
-				x=23
+				x=24
 				y=229
 				width=23
 				height=0
@@ -3133,13 +2948,13 @@ composite {
 				clr=53
 			}
 			points {
-				(46,229)
-				(23,229)
+				(47,229)
+				(24,229)
 			}
 		}
 		oval {
 			object {
-				x=27
+				x=28
 				y=195
 				width=15
 				height=15
@@ -3154,7 +2969,7 @@ composite {
 		}
 		oval {
 			object {
-				x=27
+				x=28
 				y=210
 				width=15
 				height=15
@@ -3169,7 +2984,7 @@ composite {
 		}
 		polyline {
 			object {
-				x=23
+				x=24
 				y=192
 				width=23
 				height=0
@@ -3178,13 +2993,13 @@ composite {
 				clr=53
 			}
 			points {
-				(46,192)
-				(23,192)
+				(47,192)
+				(24,192)
 			}
 		}
 		polyline {
 			object {
-				x=85
+				x=86
 				y=229
 				width=55
 				height=0
@@ -3193,13 +3008,13 @@ composite {
 				clr=53
 			}
 			points {
-				(140,229)
-				(85,229)
+				(141,229)
+				(86,229)
 			}
 		}
 		oval {
 			object {
-				x=125
+				x=126
 				y=195
 				width=15
 				height=15
@@ -3214,7 +3029,7 @@ composite {
 		}
 		oval {
 			object {
-				x=125
+				x=126
 				y=210
 				width=15
 				height=15
@@ -3229,7 +3044,7 @@ composite {
 		}
 		oval {
 			object {
-				x=105
+				x=106
 				y=195
 				width=15
 				height=15
@@ -3244,7 +3059,7 @@ composite {
 		}
 		oval {
 			object {
-				x=105
+				x=106
 				y=210
 				width=15
 				height=15
@@ -3259,7 +3074,7 @@ composite {
 		}
 		oval {
 			object {
-				x=85
+				x=86
 				y=195
 				width=15
 				height=15
@@ -3274,7 +3089,7 @@ composite {
 		}
 		oval {
 			object {
-				x=85
+				x=86
 				y=210
 				width=15
 				height=15
@@ -3289,7 +3104,7 @@ composite {
 		}
 		text {
 			object {
-				x=9
+				x=10
 				y=173
 				width=50
 				height=15
@@ -3301,7 +3116,7 @@ composite {
 		}
 		text {
 			object {
-				x=75
+				x=76
 				y=174
 				width=30
 				height=15
@@ -3313,7 +3128,7 @@ composite {
 		}
 		polyline {
 			object {
-				x=85
+				x=86
 				y=192
 				width=55
 				height=0
@@ -3322,13 +3137,13 @@ composite {
 				clr=53
 			}
 			points {
-				(140,192)
-				(85,192)
+				(141,192)
+				(86,192)
 			}
 		}
 		"shell command" {
 			object {
-				x=153
+				x=154
 				y=196
 				width=50
 				height=25
@@ -3343,7 +3158,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=1
+				x=2
 				y=163
 				width=210
 				height=80
@@ -7080,54 +6895,6 @@ composite {
 		}
 	}
 }
-"related display" {
-	object {
-		x=1151
-		y=923
-		width=120
-		height=25
-	}
-	display[0] {
-		label="Slit motors"
-		name="SlitMotors.adl"
-		args="P1=$(P1), M20=$(M20), M21=$(M21), M22=$(M22), M23=$(M23)"
-	}
-	clr=14
-	bclr=31
-	label="-Slit motors"
-}
-"related display" {
-	object {
-		x=71
-		y=923
-		width=120
-		height=25
-	}
-	display[0] {
-		label="Hexapod motors"
-		name="HexapodMotors.adl"
-		args="P3=$(P3)"
-	}
-	clr=14
-	bclr=31
-	label="-Hexapod motors"
-}
-"related display" {
-	object {
-		x=133
-		y=130
-		width=120
-		height=25
-	}
-	display[0] {
-		label="Filters"
-		name="19bm_filters.adl"
-		args="P=$(P1)"
-	}
-	clr=14
-	bclr=31
-	label="-Filters"
-}
 text {
 	object {
 		x=454
@@ -7160,7 +6927,7 @@ rectangle {
 	object {
 		x=821
 		y=244
-		width=315
+		width=310
 		height=20
 	}
 	"basic attribute" {
@@ -7736,1444 +7503,6 @@ rectangle {
 	limits {
 	}
 }
-composite {
-	object {
-		x=1070
-		y=580
-		width=295
-		height=340
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=1167
-				y=713
-				width=100
-				height=100
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-		}
-		rectangle {
-			object {
-				x=1077
-				y=588
-				width=280
-				height=20
-			}
-			"basic attribute" {
-				clr=0
-				width=2
-			}
-		}
-		polyline {
-			object {
-				x=1077
-				y=608
-				width=281
-				height=3
-			}
-			"basic attribute" {
-				clr=54
-				width=3
-			}
-			points {
-				(1078,609)
-				(1356,609)
-			}
-		}
-		text {
-			object {
-				x=1077
-				y=588
-				width=170
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="White Beam Slits"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=1272
-				y=830
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Vcenter.DRVH"
-				clr=54
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1082
-				y=830
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Vsize.DRVH"
-				clr=54
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1272
-				y=625
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Hcenter.DRVH"
-				clr=54
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1082
-				y=625
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Hsize.DRVH"
-				clr=54
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		composite {
-			object {
-				x=1167
-				y=788
-				width=100
-				height=100
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=1167
-						y=788
-						width=100
-						height=100
-					}
-					"basic attribute" {
-						clr=0
-					}
-				}
-				rectangle {
-					object {
-						x=1167
-						y=788
-						width=100
-						height=100
-					}
-					"basic attribute" {
-						clr=14
-						fill="outline"
-						width=2
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=1167
-				y=638
-				width=100
-				height=100
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=1167
-						y=638
-						width=100
-						height=100
-					}
-					"basic attribute" {
-						clr=0
-					}
-				}
-				rectangle {
-					object {
-						x=1167
-						y=638
-						width=100
-						height=100
-					}
-					"basic attribute" {
-						clr=14
-						fill="outline"
-						width=2
-					}
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=1087
-				y=713
-				width=100
-				height=100
-			}
-			"basic attribute" {
-				clr=0
-			}
-		}
-		rectangle {
-			object {
-				x=1087
-				y=713
-				width=100
-				height=100
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-				width=2
-			}
-		}
-		"message button" {
-			object {
-				x=1097
-				y=772
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hxn_tweak.A"
-				clr=14
-				bclr=51
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1112
-				y=772
-				width=50
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hxn_tweakVal.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1161
-				y=772
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hxn_tweak.B"
-				clr=14
-				bclr=51
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text update" {
-			object {
-				x=1097
-				y=723
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Hxn.DRVH"
-				clr=54
-				bclr=0
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1097
-				y=731
-				width=80
-				height=14
-			}
-			monitor {
-				chan="$(P1)Slit1Ht2.B"
-				clr=54
-				bclr=0
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=1097
-				y=744
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P1)Slit1Hxn.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1097
-				y=764
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Hxn.DRVL"
-				clr=54
-				bclr=0
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		rectangle {
-			object {
-				x=1247
-				y=713
-				width=100
-				height=100
-			}
-			"basic attribute" {
-				clr=0
-			}
-		}
-		rectangle {
-			object {
-				x=1247
-				y=713
-				width=100
-				height=100
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-				width=2
-			}
-		}
-		"text entry" {
-			object {
-				x=1257
-				y=744
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P1)Slit1Hxp.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1257
-				y=764
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Hxp.DRVL"
-				clr=54
-				bclr=0
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1257
-				y=772
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hxp_tweak.A"
-				clr=14
-				bclr=51
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1272
-				y=772
-				width=50
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hxp_tweakVal.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1321
-				y=772
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hxp_tweak.B"
-				clr=14
-				bclr=51
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text update" {
-			object {
-				x=1257
-				y=723
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Hxp.DRVH"
-				clr=54
-				bclr=0
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1257
-				y=731
-				width=80
-				height=14
-			}
-			monitor {
-				chan="$(P1)Slit1Ht2.A"
-				clr=54
-				bclr=0
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=1177
-				y=664
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P1)Slit1Vxp.VAL"
-				clr=14
-				bclr=55
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1177
-				y=684
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Vxp.DRVL"
-				clr=54
-				bclr=0
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1243
-				y=692
-				width=20
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vxp_tweak.B"
-				clr=14
-				bclr=55
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1192
-				y=692
-				width=50
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vxp_tweakVal.VAL"
-				clr=14
-				bclr=55
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1172
-				y=692
-				width=20
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vxp_tweak.A"
-				clr=14
-				bclr=55
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text update" {
-			object {
-				x=1177
-				y=643
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Vxp.DRVH"
-				clr=54
-				bclr=0
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1177
-				y=651
-				width=80
-				height=14
-			}
-			monitor {
-				chan="$(P1)Slit1Vt2.A"
-				clr=54
-				bclr=0
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=1177
-				y=839
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P1)Slit1Vxn.VAL"
-				clr=14
-				bclr=55
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1177
-				y=859
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Vxn.DRVL"
-				clr=54
-				bclr=0
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1172
-				y=867
-				width=20
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vxn_tweak.A"
-				clr=14
-				bclr=55
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1192
-				y=867
-				width=50
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vxn_tweakVal.VAL"
-				clr=14
-				bclr=55
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1243
-				y=867
-				width=20
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vxn_tweak.B"
-				clr=14
-				bclr=55
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text update" {
-			object {
-				x=1177
-				y=818
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Vxn.DRVH"
-				clr=54
-				bclr=0
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1177
-				y=826
-				width=80
-				height=14
-			}
-			monitor {
-				chan="$(P1)Slit1Vt2.B"
-				clr=54
-				bclr=0
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1082
-				y=674
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hsize_tweak.A"
-				clr=14
-				bclr=51
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1097
-				y=674
-				width=50
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hsize_tweakVal.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1146
-				y=674
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hsize_tweak.B"
-				clr=14
-				bclr=51
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1082
-				y=646
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P1)Slit1Hsize.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1082
-				y=666
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Hsize.DRVL"
-				clr=54
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1082
-				y=633
-				width=80
-				height=14
-			}
-			monitor {
-				chan="$(P1)Slit1Ht2.C"
-				clr=54
-				bclr=3
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=1082
-				y=613
-				width=80
-				height=14
-			}
-			"basic attribute" {
-				clr=24
-				fill="outline"
-			}
-			textix="H SIZE"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=1272
-				y=674
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hcenter_tweak.A"
-				clr=14
-				bclr=51
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1287
-				y=674
-				width=50
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hcenter_tweakVal.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1336
-				y=674
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Hcenter_tweak.B"
-				clr=14
-				bclr=51
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1272
-				y=646
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P1)Slit1Hcenter.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1272
-				y=666
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Hcenter.DRVL"
-				clr=54
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1272
-				y=633
-				width=80
-				height=14
-			}
-			monitor {
-				chan="$(P1)Slit1Ht2.D"
-				clr=54
-				bclr=3
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=1272
-				y=613
-				width=80
-				height=14
-			}
-			"basic attribute" {
-				clr=24
-				fill="outline"
-			}
-			textix="H CENTER"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=1268
-				y=879
-				width=20
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vcenter_tweak.A"
-				clr=14
-				bclr=55
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1287
-				y=879
-				width=50
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vcenter_tweakVal.VAL"
-				clr=14
-				bclr=55
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1336
-				y=879
-				width=20
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vcenter_tweak.B"
-				clr=14
-				bclr=55
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1272
-				y=851
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P1)Slit1Vcenter.VAL"
-				clr=14
-				bclr=55
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1272
-				y=871
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Vcenter.DRVL"
-				clr=54
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1272
-				y=838
-				width=80
-				height=14
-			}
-			monitor {
-				chan="$(P1)Slit1Vt2.D"
-				clr=54
-				bclr=3
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=1272
-				y=818
-				width=80
-				height=14
-			}
-			"basic attribute" {
-				clr=24
-				fill="outline"
-			}
-			textix="V CENTER"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=1081
-				y=879
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vsize_tweak.A"
-				clr=14
-				bclr=55
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1097
-				y=879
-				width=50
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vsize_tweakVal.VAL"
-				clr=14
-				bclr=55
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1146
-				y=879
-				width=16
-				height=16
-			}
-			control {
-				chan="$(P1)Slit1Vsize_tweak.B"
-				clr=14
-				bclr=55
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=1082
-				y=851
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P1)Slit1Vsize.VAL"
-				clr=14
-				bclr=55
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1082
-				y=871
-				width=80
-				height=10
-			}
-			monitor {
-				chan="$(P1)Slit1Vsize.DRVL"
-				clr=54
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1082
-				y=838
-				width=80
-				height=14
-			}
-			monitor {
-				chan="$(P1)Slit1Vt2.C"
-				clr=54
-				bclr=3
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=1082
-				y=818
-				width=80
-				height=14
-			}
-			"basic attribute" {
-				clr=24
-				fill="outline"
-			}
-			textix="V SIZE"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=1187
-				y=613
-				width=60
-				height=22
-			}
-			control {
-				chan="$(P1)Slit1Hsync.PROC"
-				clr=14
-				bclr=51
-			}
-			label="Sync H"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=1187
-				y=891
-				width=60
-				height=22
-			}
-			control {
-				chan="$(P1)Slit1Vsync.PROC"
-				clr=14
-				bclr=55
-			}
-			label="Sync V"
-			press_msg="1"
-		}
-		text {
-			object {
-				x=1247
-				y=594
-				width=110
-				height=12
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="(Looking upstream)"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=1212
-				y=758
-				width=7
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="+"
-		}
-		composite {
-			object {
-				x=1223
-				y=759
-				width=16
-				height=11
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=1223
-						y=765
-						width=13
-						height=0
-					}
-					"basic attribute" {
-						clr=0
-					}
-					points {
-						(1223,765)
-						(1236,765)
-					}
-				}
-				polyline {
-					object {
-						x=1228
-						y=759
-						width=11
-						height=11
-					}
-					"basic attribute" {
-						clr=0
-						width=2
-					}
-					points {
-						(1229,760)
-						(1238,765)
-						(1229,769)
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=1191
-				y=759
-				width=16
-				height=11
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=1191
-						y=765
-						width=13
-						height=0
-					}
-					"basic attribute" {
-						clr=0
-					}
-					points {
-						(1191,765)
-						(1204,765)
-					}
-				}
-				polyline {
-					object {
-						x=1196
-						y=759
-						width=11
-						height=11
-					}
-					"basic attribute" {
-						clr=0
-						width=2
-					}
-					points {
-						(1197,760)
-						(1206,765)
-						(1197,769)
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(P1)Slit1HCoordSys"
-			}
-		}
-		composite {
-			object {
-				x=1209
-				y=741
-				width=11
-				height=16
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=1215
-						y=744
-						width=0
-						height=13
-					}
-					"basic attribute" {
-						clr=0
-					}
-					points {
-						(1215,757)
-						(1215,744)
-					}
-				}
-				polyline {
-					object {
-						x=1209
-						y=741
-						width=11
-						height=11
-					}
-					"basic attribute" {
-						clr=0
-						width=2
-					}
-					points {
-						(1210,751)
-						(1215,742)
-						(1219,751)
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=1210
-				y=772
-				width=11
-				height=16
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=1216
-						y=775
-						width=0
-						height=13
-					}
-					"basic attribute" {
-						clr=0
-					}
-					points {
-						(1216,788)
-						(1216,775)
-					}
-				}
-				polyline {
-					object {
-						x=1210
-						y=772
-						width=11
-						height=11
-					}
-					"basic attribute" {
-						clr=0
-						width=2
-					}
-					points {
-						(1211,782)
-						(1216,773)
-						(1220,782)
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(P1)Slit1VCoordSys"
-			}
-		}
-		composite {
-			object {
-				x=1210
-				y=772
-				width=11
-				height=16
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=1215
-						y=772
-						width=0
-						height=13
-					}
-					"basic attribute" {
-						clr=0
-					}
-					points {
-						(1215,772)
-						(1215,785)
-					}
-				}
-				polyline {
-					object {
-						x=1210
-						y=777
-						width=11
-						height=11
-					}
-					"basic attribute" {
-						clr=0
-						width=2
-					}
-					points {
-						(1220,778)
-						(1215,787)
-						(1211,778)
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P1)Slit1VCoordSys"
-			}
-		}
-		composite {
-			object {
-				x=1191
-				y=759
-				width=16
-				height=11
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=1194
-						y=765
-						width=13
-						height=0
-					}
-					"basic attribute" {
-						clr=0
-					}
-					points {
-						(1207,765)
-						(1194,765)
-					}
-				}
-				polyline {
-					object {
-						x=1191
-						y=759
-						width=11
-						height=11
-					}
-					"basic attribute" {
-						clr=0
-						width=2
-					}
-					points {
-						(1201,760)
-						(1192,765)
-						(1201,769)
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P1)Slit1HCoordSys"
-			}
-		}
-		rectangle {
-			object {
-				x=1070
-				y=580
-				width=295
-				height=340
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-				width=5
-			}
-		}
-	}
-}
 rectangle {
 	object {
 		x=406
@@ -9262,4 +7591,964 @@ text {
 		clr=14
 	}
 	textix="Microrad"
+}
+composite {
+	object {
+		x=2
+		y=0
+		width=220
+		height=125
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=14
+				y=7
+				width=200
+				height=20
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="FE Shutter"
+			align="horiz. centered"
+		}
+		"message button" {
+			object {
+				x=18
+				y=43
+				width=75
+				height=35
+			}
+			control {
+				chan="S19BM-PSS:FES:OpenEPICSC"
+				clr=14
+				bclr=51
+			}
+			label="Open"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=18
+				y=78
+				width=75
+				height=35
+			}
+			control {
+				chan="S19BM-PSS:FES:CloseEPICSC"
+				clr=14
+				bclr=51
+			}
+			label="Close"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=114
+				y=35
+				width=35
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Status"
+			align="horiz. centered"
+		}
+		oval {
+			object {
+				x=121
+				y=53
+				width=20
+				height=19
+			}
+			"basic attribute" {
+				clr=60
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="S19BM-PSS:FES:BeamBlockingM"
+			}
+		}
+		oval {
+			object {
+				x=121
+				y=85
+				width=20
+				height=19
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="S19BM-PSS:FES:BeamBlockingM"
+			}
+		}
+		text {
+			object {
+				x=171
+				y=35
+				width=35
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Permit"
+			align="horiz. centered"
+		}
+		oval {
+			object {
+				x=178
+				y=53
+				width=20
+				height=19
+			}
+			"basic attribute" {
+				clr=60
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="S19BM-PSS:FES:PermitM"
+			}
+		}
+		oval {
+			object {
+				x=178
+				y=85
+				width=20
+				height=19
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="S19BM-PSS:FES:PermitM"
+			}
+		}
+		rectangle {
+			object {
+				x=2
+				y=0
+				width=220
+				height=125
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=5
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=1156
+		y=241
+		width=180
+		height=400
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=1194
+				y=586
+				width=83
+				height=29
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=1197
+						y=586
+						width=80
+						height=26
+					}
+					"basic attribute" {
+						clr=54
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="19bmSoft:alldoneBlink.VAL"
+					}
+					textix="Moving"
+				}
+				text {
+					object {
+						x=1194
+						y=589
+						width=80
+						height=26
+					}
+					"basic attribute" {
+						clr=20
+					}
+					"dynamic attribute" {
+						vis="if zero"
+						chan="19bmSoft:alldone.VAL"
+					}
+					textix="Moving"
+				}
+			}
+		}
+		"message button" {
+			object {
+				x=1166
+				y=526
+				width=150
+				height=50
+			}
+			control {
+				chan="19bmSoft:allstop.VAL"
+				clr=30
+				bclr=20
+			}
+			label="All Stop"
+			press_msg="1"
+		}
+		rectangle {
+			object {
+				x=1156
+				y=241
+				width=180
+				height=400
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=5
+			}
+		}
+		text {
+			object {
+				x=1176
+				y=251
+				width=140
+				height=18
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Beamline Controls"
+			align="horiz. centered"
+		}
+		"related display" {
+			object {
+				x=1183
+				y=316
+				width=120
+				height=25
+			}
+			display[0] {
+				label="Slit motors"
+				name="SlitMotors.adl"
+				args="P1=$(P1), M20=$(M20), M21=$(M21), M22=$(M22), M23=$(M23)"
+			}
+			clr=14
+			bclr=31
+			label="-Slit motors"
+		}
+		"related display" {
+			object {
+				x=1180
+				y=351
+				width=120
+				height=25
+			}
+			display[0] {
+				label="Filters"
+				name="19bm_filters.adl"
+				args="P=$(P1)"
+			}
+			clr=14
+			bclr=31
+			label="-Filters"
+		}
+		"related display" {
+			object {
+				x=1183
+				y=385
+				width=120
+				height=25
+			}
+			display[0] {
+				label="Hexapod motors"
+				name="HexapodMotors.adl"
+				args="P3=$(P3)"
+			}
+			clr=14
+			bclr=31
+			label="-Hexapod motors"
+		}
+		"related display" {
+			object {
+				x=1183
+				y=419
+				width=120
+				height=25
+			}
+			display[0] {
+				label="TomoScan"
+				name="tomoScan.adl"
+				args="P=$(TS), R=$(TS_R), BEAMLINE=$(TS_BEAMLINE)"
+			}
+			clr=14
+			bclr=31
+			label="-TomoScan"
+		}
+		"shell command" {
+			object {
+				x=1180
+				y=453
+				width=120
+				height=25
+			}
+			command[0] {
+				label="IOCs"
+				name="medm -x /home/beams/FACTUSER/bin/adl/iocs_start.adl &"
+			}
+			clr=0
+			bclr=49
+			label="-IOCs"
+		}
+		"shell command" {
+			object {
+				x=1180
+				y=487
+				width=120
+				height=25
+			}
+			command[0] {
+				label="Camera 1"
+				name="firefox http://10.54.129.31 &"
+			}
+			command[1] {
+				label="Camera 2"
+				name="firefox http://10.54.129.32 &"
+			}
+			command[2] {
+				label="Camera 3"
+				name="firefox http://10.54.129.33 &"
+			}
+			clr=0
+			bclr=49
+			label="-    WebCam"
+		}
+		"related display" {
+			object {
+				x=1183
+				y=281
+				width=120
+				height=25
+			}
+			display[0] {
+				label="White Beam Slits"
+				name="WhiteBeamSlits.adl"
+				args="P1=$(P1)"
+			}
+			clr=14
+			bclr=51
+			label="WB Slits"
+		}
+	}
+}
+composite {
+	object {
+		x=1108
+		y=686
+		width=232
+		height=225
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=1115
+				y=694
+				width=212
+				height=20
+			}
+			"basic attribute" {
+				clr=0
+				width=2
+			}
+		}
+		polyline {
+			object {
+				x=1115
+				y=714
+				width=213
+				height=3
+			}
+			"basic attribute" {
+				clr=54
+				width=3
+			}
+			points {
+				(1116,715)
+				(1326,715)
+			}
+		}
+		text {
+			object {
+				x=1115
+				y=694
+				width=225
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="White Beam Slits"
+			align="horiz. centered"
+		}
+		rectangle {
+			object {
+				x=1108
+				y=686
+				width=225
+				height=225
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=5
+			}
+		}
+		composite {
+			object {
+				x=1231
+				y=719
+				width=80
+				height=77
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=1231
+						y=731
+						width=80
+						height=10
+					}
+					monitor {
+						chan="$(P1)Slit1Hcenter.DRVH"
+						clr=54
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=1231
+						y=780
+						width=16
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Hcenter_tweak.A"
+						clr=14
+						bclr=51
+					}
+					label="-"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=1246
+						y=780
+						width=50
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Hcenter_tweakVal.VAL"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=1295
+						y=780
+						width=16
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Hcenter_tweak.B"
+						clr=14
+						bclr=51
+					}
+					label="+"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=1231
+						y=752
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P1)Slit1Hcenter.VAL"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=1231
+						y=772
+						width=80
+						height=10
+					}
+					monitor {
+						chan="$(P1)Slit1Hcenter.DRVL"
+						clr=54
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=1231
+						y=739
+						width=80
+						height=14
+					}
+					monitor {
+						chan="$(P1)Slit1Ht2.D"
+						clr=54
+						bclr=3
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=1231
+						y=719
+						width=80
+						height=14
+					}
+					"basic attribute" {
+						clr=24
+						fill="outline"
+					}
+					textix="H CENTER"
+					align="horiz. centered"
+				}
+			}
+		}
+		composite {
+			object {
+				x=1231
+				y=819
+				width=88
+				height=77
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=1235
+						y=831
+						width=80
+						height=10
+					}
+					monitor {
+						chan="$(P1)Slit1Vcenter.DRVH"
+						clr=54
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=1231
+						y=880
+						width=20
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Vcenter_tweak.A"
+						clr=14
+						bclr=55
+					}
+					label="-"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=1250
+						y=880
+						width=50
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Vcenter_tweakVal.VAL"
+						clr=14
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=1299
+						y=880
+						width=20
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Vcenter_tweak.B"
+						clr=14
+						bclr=55
+					}
+					label="+"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=1235
+						y=852
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P1)Slit1Vcenter.VAL"
+						clr=14
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=1235
+						y=872
+						width=80
+						height=10
+					}
+					monitor {
+						chan="$(P1)Slit1Vcenter.DRVL"
+						clr=54
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=1235
+						y=839
+						width=80
+						height=14
+					}
+					monitor {
+						chan="$(P1)Slit1Vt2.D"
+						clr=54
+						bclr=3
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=1235
+						y=819
+						width=80
+						height=14
+					}
+					"basic attribute" {
+						clr=24
+						fill="outline"
+					}
+					textix="V CENTER"
+					align="horiz. centered"
+				}
+			}
+		}
+		composite {
+			object {
+				x=1119
+				y=819
+				width=81
+				height=77
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=1120
+						y=831
+						width=80
+						height=10
+					}
+					monitor {
+						chan="$(P1)Slit1Vsize.DRVH"
+						clr=54
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=1119
+						y=880
+						width=16
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Vsize_tweak.A"
+						clr=14
+						bclr=55
+					}
+					label="-"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=1135
+						y=880
+						width=50
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Vsize_tweakVal.VAL"
+						clr=14
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=1184
+						y=880
+						width=16
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Vsize_tweak.B"
+						clr=14
+						bclr=55
+					}
+					label="+"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=1120
+						y=852
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P1)Slit1Vsize.VAL"
+						clr=14
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=1120
+						y=872
+						width=80
+						height=10
+					}
+					monitor {
+						chan="$(P1)Slit1Vsize.DRVL"
+						clr=54
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=1120
+						y=839
+						width=80
+						height=14
+					}
+					monitor {
+						chan="$(P1)Slit1Vt2.C"
+						clr=54
+						bclr=3
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=1120
+						y=819
+						width=80
+						height=14
+					}
+					"basic attribute" {
+						clr=24
+						fill="outline"
+					}
+					textix="V SIZE"
+					align="horiz. centered"
+				}
+			}
+		}
+		composite {
+			object {
+				x=1120
+				y=719
+				width=80
+				height=77
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=1120
+						y=731
+						width=80
+						height=10
+					}
+					monitor {
+						chan="$(P1)Slit1Hsize.DRVH"
+						clr=54
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=1120
+						y=780
+						width=16
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Hsize_tweak.A"
+						clr=14
+						bclr=51
+					}
+					label="-"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=1135
+						y=780
+						width=50
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Hsize_tweakVal.VAL"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=1184
+						y=780
+						width=16
+						height=16
+					}
+					control {
+						chan="$(P1)Slit1Hsize_tweak.B"
+						clr=14
+						bclr=51
+					}
+					label="+"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=1120
+						y=752
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P1)Slit1Hsize.VAL"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=1120
+						y=772
+						width=80
+						height=10
+					}
+					monitor {
+						chan="$(P1)Slit1Hsize.DRVL"
+						clr=54
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=1120
+						y=739
+						width=80
+						height=14
+					}
+					monitor {
+						chan="$(P1)Slit1Ht2.C"
+						clr=54
+						bclr=3
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=1120
+						y=719
+						width=80
+						height=14
+					}
+					"basic attribute" {
+						clr=24
+						fill="outline"
+					}
+					textix="H SIZE"
+					align="horiz. centered"
+				}
+			}
+		}
+	}
 }
